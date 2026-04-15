@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment – SHOPKRO</title>
+
+<style>
+body{
+  font-family:Inter,sans-serif;
+  background:linear-gradient(135deg,#7b2cbf,#5a189a);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.payment-box{
+  background:white;
+  padding:30px;
+  width:420px;
+  border-radius:20px;
+  box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+h2{
+  text-align:center;
+  color:#7b2cbf;
+  margin-bottom:20px;
+}
+
+.method{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.method:hover{
+  background:#f3e8ff;
+  transform:scale(1.02);
+}
+
+button{
+  width:100%;
+  padding:14px;
+  background:#7b2cbf;
+  border:none;
+  border-radius:12px;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#5a189a;
+}
+</style>
+</head>
+
+<body>
+
+<div class="payment-box">
+  <h2>Select Payment Method</h2>
+
+  <div class="method" onclick="showOnlinePayment()">
+  💳 Online Payment (UPI / Card)
+</div>
+
+<div class="method" onclick="selectCOD()">
+  💵 Cash on Delivery
+</div>
+
+<!-- ONLINE PAYMENT OPTIONS -->
+<div id="onlineBox" style="display:none;margin-top:15px;">
+  <input type="text" id="upi" placeholder="Enter UPI ID"
+    style="width:100%;padding:12px;margin-bottom:10px;border-radius:10px;border:1px solid #ccc;">
+
+  <input type="text" placeholder="Card Number"
+    style="width:100%;padding:12px;margin-bottom:10px;border-radius:10px;border:1px solid #ccc;">
+
+  <input type="text" placeholder="Expiry (MM/YY)"
+    style="width:48%;padding:12px;border-radius:10px;border:1px solid #ccc;">
+
+  <input type="text" placeholder="CVV"
+    style="width:48%;padding:12px;border-radius:10px;border:1px solid #ccc;float:right;">
+</div>
+
+  <button onclick="confirmOrder()">Confirm Order</button>
+</div>
+
+<script>
+let paymentMethod = "";
+
+function showOnlinePayment(){
+  paymentMethod = "Online Payment";
+  document.getElementById("onlineBox").style.display = "block";
+}
+
+function selectCOD(){
+  paymentMethod = "Cash on Delivery";
+  document.getElementById("onlineBox").style.display = "none";
+}
+
+function confirmOrder(){
+  if(paymentMethod === ""){
+    alert("Please select a payment method");
+    return;
+  }
+
+  if(paymentMethod === "Online Payment"){
+    const upi = document.getElementById("upi").value;
+    if(upi.trim() === ""){
+      alert("Please enter UPI ID or card details");
+      return;
+    }
+  }
+
+  // Clear order data
+  localStorage.removeItem("shopName");
+  localStorage.removeItem("shopDistance");
+  localStorage.removeItem("cartData");
+  localStorage.removeItem("cartTotal");
+
+  // Go to success animation page
+  window.location.href = "success.html";
+}
+</script>
+
+</body>
+</html>

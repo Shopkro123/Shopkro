@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ShopKaro – Home Food Delivery</title>
+
+  <!-- PROFESSIONAL CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: white;
+      color: #7b2cbf;
+      padding: 5px;
+      text-align:;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    header p {
+      opacity: 0.9;
+      margin-top: 5px;
+    }
+
+    .food-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .food-card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .food-card h3 {
+      font-size: 1.3rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .food-card p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .food-card button {
+      background: linear-gradient(90deg, #ff6f00, #ff8f00);
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .food-card button:hover {
+      background: linear-gradient(90deg, #ff8f00, #ff6f00);
+      transform: scale(1.05);
+    }
+
+    .cart {
+      background: white;
+      max-width: 600px;
+      margin: 20px auto 40px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .cart h2 {
+      margin-bottom: 15px;
+      color: #ff6f00;
+      text-align: center;
+    }
+
+    .cart ul {
+      list-style: none;
+      margin-bottom: 15px;
+    }
+
+    .cart ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+
+    .cart h3 {
+      margin-top: 10px;
+      text-align: right;
+      color: #333;
+    }
+
+    .order-btn {
+      width: 100%;
+      margin-top: 20px;
+      background: linear-gradient(90deg, #2e7d32, #43a047);
+      color: white;
+      padding: 12px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .order-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1> SHOPKR</h1>
+    <p>KIRANA GROSERIES AT YOUR DOORSTEPS</p>
+  </header>
+
+  <section class="food-container">
+    <div class="food-card">
+      <h3>Rice</h3>
+      <p>₹40</p>
+      <button onclick="addToCart('Rice', 40)">Add to Cart</button>
+    </div>
+
+    <div class="food-card">
+      <h3>Salt (2 pcs)</h3>
+      <p>₹20</p>
+      <button onclick="addToCart('Salt', 20)">Add to Cart</button>
+    </div>
+
+    <div class="food-card">
+      <h3>MoongDal</h3>
+      <p>₹50</p>
+      <button onclick="addToCart('MoongDal', 50)">Add to Cart</button>
+    </div>
+
+    <div class="food-card">
+      <h3>SoyaBean</h3>
+      <p>₹60</p>
+      <button onclick="addToCart('SoyaBean', 60)">Add to Cart</button>
+    </div>
+    <div class="food-card">
+      <h3> Rajma</h3>
+      <p>₹50</p>
+      <button onclick="addToCart('Rajma', 50)">Add to Cart</button>
+    </div>
+<div class="food-card">
+      <h3>Poha</h3>
+      <p>₹35</p>
+      <button onclick="addToCart('Poha', 50)">Add to Cart</button>
+    </div>
+<div class="food-card">
+      <h3>Rava</h3>
+      <p>₹20</p>
+      <button onclick="addToCart('Rava', 20)">Add to Cart</button>
+    </div>
+
+
+
+  </section>
+
+  <section class="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <button class="order-btn" onclick="placeOrder()">Place Order</button>
+  </section>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    let total = 0;
+    const cartItems = document.getElementById('cartItems');
+    const totalDisplay = document.getElementById('total');
+
+    function addToCart(item, price) {
+      const li = document.createElement('li');
+      li.textContent = `${item} - ₹${price}`;
+      cartItems.appendChild(li);
+
+      total += price;
+      totalDisplay.textContent = total;
+    }
+
+    function placeOrder() {
+      if (total === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      alert('Order placed successfully! Total: ₹' + total);
+      cartItems.innerHTML = '';
+      total = 0;
+      totalDisplay.textContent = 0;
+    }
+  </script>
+
+</body>
+</html>
+
+

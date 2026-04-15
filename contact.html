@@ -1,0 +1,70 @@
+
+<html> 
+<head> 
+<address class="food-contact"> 
+<strong>SHOPKRO</strong><br> 
+89 East Road Old Town Pune <br> 
+<a href="tel:+91 7073378403">(123) 456-7890</a><br> 
+<a href="mailto:orders@shopkro.com">orders@shopkromangement.com</a> 
+</address> 
+</head>
+</body> 
+
+<style>
+.food-contact{
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 22px 26px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  font-family: 'Segoe UI', sans-serif;
+  font-style: normal;
+  color: #333;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Purple accent line */
+.food-contact::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: #7b2cbf;
+  border-radius: 18px 18px 0 0;
+}
+
+.food-contact strong{
+  font-size: 1.3rem;
+  color: #7b2cbf;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.food-contact a{
+  display: inline-block;
+  color: #5a189a;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.food-contact a:hover{
+  text-decoration: underline;
+}
+
+/* Mobile friendly */
+@media(max-width:600px){
+  .food-contact{
+    margin: 20px;
+    padding: 18px;
+    font-size: 0.95rem;
+  }
+}
+</style>
+</body>
+</html>

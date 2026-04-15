@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nearby Shops – SHOPKRO</title>
+
+<style>
+body{
+  font-family:Inter,sans-serif;
+  background:linear-gradient(135deg,#7b2cbf,#5a189a);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.container{
+  background:white;
+  padding:30px;
+  width:420px;
+  border-radius:20px;
+  box-shadow:0 15px 30px rgba(0,0,0,.3);
+}
+
+h2{
+  text-align:center;
+  color:#7b2cbf;
+  margin-bottom:20px;
+}
+
+.shop{
+  border:1px solid #ddd;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:12px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.shop:hover{
+  background:#f3e8ff;
+  transform:scale(1.02);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Select Nearby Shop</h2>
+
+  <div class="shop" onclick="selectShop('Ramesh Kirana Store', '0.5 km')">
+    🏪 Ramesh Kirana Store <br>
+    <small>Distance: 0.5 km</small>
+  </div>
+
+  <div class="shop" onclick="selectShop('Gupta General Store', '1.2 km')">
+    🏪 Gupta General Store <br>
+    <small>Distance: 1.2 km</small>
+  </div>
+
+  <div class="shop" onclick="selectShop('Fresh Mart', '1.8 km')">
+    🏪 Fresh Mart <br>
+    <small>Distance: 1.8 km</small>
+  </div>
+  <div class="shop" onclick="selectShop('Puja Genral Store', '1 km')">
+    🏪 Fresh Mart <br>
+    <small>Distance: 1 km</small>
+  </div>
+<div class="shop" onclick="selectShop('Ganesh Kirana', '500m')">
+    🏪 Fresh Mart <br>
+    <small>Distance: 500 m</small>
+  </div>
+<div class="shop" onclick="selectShop('Aai Ji', '1.9 km')">
+    🏪 Fresh Mart <br>
+    <small>Distance: 1.9km</small>
+  </div>
+
+
+</div>
+
+<script>
+function selectShop(name, distance){
+  localStorage.setItem("shopName", name);
+  localStorage.setItem("shopDistance", distance);
+  window.location.href = "checkout.html";
+}
+</script>
+
+</body>
+</html>
